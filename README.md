@@ -1,6 +1,6 @@
-# Diabetic Retinopathy Detection System
+# Insulyser - Diabetic Retinopathy Detection System
 
-This repository contains a web application built using Flask and HTML/CSS for detecting different stages of diabetic retinopathy from retinal images. 
+This repository contains a web application built using Django and HTML/CSS for detecting different stages of diabetic retinopathy from retinal images. 
 The application allows users to upload scanned retinal images and provides predictions on the stage of diabetic retinopathy, including mild, moderate, no diabetic retinopathy, proliferative diabetic retinopathy, and severe diabetic retinopathy.
 
 ## Table of Contents
@@ -25,14 +25,16 @@ The application allows users to upload scanned retinal images and provides predi
 ## Requirements
 
 - Python 3.7+
+- Django 5.0
+- TensorFlow / Keras
 - [requirements.txt](requirements.txt)
 
 ## Installation
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/saurav6422/Diabetic-Retinopathy-Detection-System.git
-    cd Diabetic-Retinopathy-Detection-System
+   ```bash
+   git clone https://github.com/abir-011/Insulyser-DRDS.git
+   cd Insulyser-DRDS
     ```
 
 2. Install the required packages:
@@ -42,12 +44,12 @@ The application allows users to upload scanned retinal images and provides predi
 
 ## Usage
 
-1. Run the Streamlit app:
+1. Start the Django development server:
     ```bash
-    flask run 
+    python manage.py runserver
     ```
 
-2. Open your browser and go to `[http://localhost:5000]` to access the application.
+2. Open your browser and go to http://localhost:8000 to access the application.
 3. Log in to the application using the provided credentials.
 4. Navigate to the home page and click the "Upload Image" button.
 5. Select a scanned retinal image from your local filesystem.
@@ -56,12 +58,18 @@ The application allows users to upload scanned retinal images and provides predi
 
 ## File Structure
 
-- `app.py`: The main script containing the Streamlit application.
-- `requirements.txt`: A file listing the required Python packages.
-- `model2_.h5` : Trained model.
-- `static` : Assets for the website.
-- `templates` : File for the website.
-- `dataset` : dataset upon which model is trained.
+- `drds_project/` : Django project root.
+- `drds_project/urls.py` : Project-level URL routing.
+- `drds_app/` : Main app handling all backend logic and routing.
+- `drds_app/urls.py` : App-level URL routing.
+- `model/` : Contains the trained model file `model_2.h5`.
+- `templates/` : HTML templates for frontend rendering.
+- `views.py` : Core logic for image processing and prediction.
+- `settings.py` : Project settings and configuration.
+- `media/` : Stores uploaded images.
+- `dataset/` – Dataset used for training.
+- `requirements.txt` – List of required Python packages.
+- `manage.py` – Django project entry point.
 
 ## License
 
@@ -69,14 +77,15 @@ This project is licensed under the GNU General Public License v2.0. See the [LIC
 
 ## Acknowledgements
 
-- [Flask](https://palletsprojects.com/p/flask/)
+- [Django](https://www.djangoproject.com/)
 - [OpenCV](https://opencv.org/)
 - [Keras](https://keras.io/)
 - [TenserFlow](https://www.tensorflow.org/)
+- [Git LFS – For handling the large model file](https://git-lfs.com/)
 
 ## Team
 
 - Aditya - Machine Learning Engineer - [Git](https://github.com/Aditya-039)
 - Saurav - Machine Learning Engineer | Backend Developer - [Git](https://github.com/saurav6422)
 - Sambarta - Frontend Developer - [Git](https://github.com/Sambarta-2001)
-- Abir - Backend Developer | Frontend Developer - [Git](https://github.com/abir-011)
+- Abir - Backend Developer | Machine Learning Engineer - [Git](https://github.com/abir-011)
