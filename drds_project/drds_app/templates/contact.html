@@ -5,25 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Insulyser.Inc</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'contact.css' %}">
 </head>
 <body>
 
-<div id="left-part">
-    <h2>Insulyser by TheBalds</h2>
-    <ul>
-        <li><a href="/logout">Logout</a></li>
-        <li><a href="/home">Upload</a></li>
-        <li><a href="/about">About Diabetic Retinopathy</a></li>
+<div class="sidebar">
+    <h2 class="logo">Insulyser <span>by TheBalds</span></h2>
+    <ul class="nav-links">
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        <li><a href="{% url 'home' %}">Upload</a></li>
+        <li><a href="{% url 'about' %}">About Diabetic Retinopathy</a></li>
     </ul>
 </div>
 
-<div id="right-part">
+<div class="main-content">
     <div class="container">
         <h2>Contact Us</h2>
-        <p>Feel free to get in touch with us for any inquiries or assistance.</p>
-        <p>Email: info@thebalds.com</p>
-        <p>Phone: +91 9876543210</p>
+        <p>If you have any inquiries or need assistance, feel free to reach out!</p>
+        <div class="contact-info">
+            <p><strong>Email:</strong> info@thebalds.com</p>
+            <p><strong>Phone:</strong> +91 9876543210</p>
+            <p><strong>Address:</strong> 123 HealthTech Lane, MedCity, India</p>
+        </div>
     </div>
 </div>
 

@@ -1,0 +1,95 @@
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h2, h3 {
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+/* List styles */
+ul {
+    list-style-type: square;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+/* Text Styling */
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Sidebar Styling */
+#left-part {
+    width: 250px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#left-part h2 {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+
+#left-part ul {
+    padding: 0;
+    margin-top: 40px;
+}
+
+#left-part ul li {
+    margin-bottom: 20px;
+}
+
+#left-part ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+#left-part ul li a:hover {
+    color: #1abc9c;
+}
+
+/* Right section */
+#right-part {
+    margin-left: 250px;
+    padding: 40px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+#right-part h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#right-part h3 {
+    font-size: 1.8em;
+    color: #007bff;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#right-part ul {
+    margin-left: 40px;
+}

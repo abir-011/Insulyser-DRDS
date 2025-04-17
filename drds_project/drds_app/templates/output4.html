@@ -4,26 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload - Insulyser.Inc</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Predicted - Insulyser.Inc</title>
+    <link rel="stylesheet" href="{% static 'output4.css' %}">
 </head>
 <body>
 
-<div id="left-part">
-    <h2>Insulyser by TheBalds</h2>
-    <ul>
+<div class="sidebar">
+    <h2 class="logo">Insulyser <span>by TheBalds</span></h2>
+    <ul class="nav-links">
         <li><a href="/logout">Logout</a></li>
         <li><a href="/about">About Diabetic Retinopathy</a></li>
         <li><a href="/contact">Contact Us</a></li>
     </ul>
 </div>
 
-<div id="right-part">
-    <div class="container">
-        <h2>Predicted</h2>
-        <p>Proliferate Diabetic Retinopathy.</p>
-        <ul>
-            <li><button class="button" onclick="window.location.href='/home';">Upload another image</button></li>
+<div class="main-content">
+    <div class="content-box">
+        <h2>Predicted Result</h2>
+        <p class="result">Proliferative Diabetic Retinopathy</p>
+        <ul class="button-container">
+            <li>
+                <button class="button" onclick="window.location.href='/home';">Upload Another Image</button>
+            </li>
         </ul>
     </div>
 </div>

@@ -1,0 +1,158 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 260px;
+    background-color: #2d3e50;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.sidebar .logo span {
+    font-weight: normal;
+}
+
+.sidebar .nav-links {
+    list-style-type: none;
+}
+
+.sidebar .nav-links li {
+    margin: 15px 0;
+}
+
+.sidebar .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav-links li a:hover {
+    background-color: #34495e;
+    padding-left: 10px;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 260px;
+    padding: 40px;
+    flex: 1;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+
+/* Content Box Styles */
+.content-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.content-box h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.content-box p.result {
+    font-size: 22px;
+    color: #e74c3c; /* Color for critical result */
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.button-container {
+    list-style-type: none;
+}
+
+.button-container li {
+    margin: 10px 0;
+}
+
+button.button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.button:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 220px;
+    }
+
+    .main-content {
+        margin-left: 220px;
+        padding: 20px;
+    }
+
+    .content-box {
+        padding: 25px;
+    }
+
+    button.button {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .content-box {
+        padding: 20px;
+    }
+
+    button.button {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+}

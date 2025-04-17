@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload - Insulyser.Inc</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Processing - Insulyser.Inc</title>
+    <link rel="stylesheet" href="{% static 'wait.css' %}">
 </head>
 <body>
 
 <div id="left-part">
-    <h2>Insulyser by TheBalds</h2>
+    <h2>Insulyser <span>by TheBalds</span></h2>
     <ul>
         <li><a href="/logout">Logout</a></li>
         <li><a href="/about">About Diabetic Retinopathy</a></li>
@@ -20,9 +20,10 @@
 
 <div id="right-part">
     <div class="container">
-        <h2>Uploaded succesfully</h2>
-        <p>Predicting.</p>
-        <p>Please wait.</p>
+        <h2>Image Uploaded Successfully</h2>
+        <p class="tagline">Processing your retinal image with our AI model...</p>
+        <p>Please wait. This may take a few moments.</p>
+        <div class="loader"></div>
     </div>
 </div>
 

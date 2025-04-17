@@ -1,0 +1,85 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Layout */
+body {
+    display: flex;
+    height: 100vh;
+    background: #f4f7fb;
+    color: #333;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #1f1f33;
+    padding: 30px 20px;
+    color: white;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.logo span {
+    display: block;
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    margin-bottom: 20px;
+}
+
+.nav-links li a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-links li a:hover {
+    color: #ffffff;
+    padding-left: 8px;
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom right, #eaf3fc, #ffffff);
+}
+
+.content-box {
+    background-color: white;
+    padding: 50px 70px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.content-box h2 {
+    font-size: 32px;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.content-box .tagline {
+    font-size: 18px;
+    color: #555;
+}

@@ -5,26 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Insulyser.Inc</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
 </head>
 <body>
 
-<div id="left-part">
-    <h2>Insulyser by TheBalds</h2>
-    
-    <ul>
-        <li><a href="/about">About Diabetic Retinopathy</a></li>
-        <li><a href="/contact">Contact Us</a></li>
+<div class="sidebar">
+    <h2 class="logo">Insulyser <span>by TheBalds</span></h2>
+    <ul class="nav-links">
+        <li><a href="{% url 'about' %}">About Diabetic Retinopathy</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
     </ul>
 </div>
 
-<div id="right-part">
-    <div id="login-content" class="container">
+<div class="main-content">
+    <div class="login-box">
         <h2>WELCOME</h2>
         <p>This is Diabetic Retinopathy Detection System.</p>
         <h2>Login</h2>
-        <form method="post" action="/login">
+        <form method="post" action="{% url 'login' %}" class="login-form">
             {% csrf_token %}
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
@@ -35,7 +33,7 @@
             <input type="submit" value="Login">
         </form>
         {% if message %}
-            <p>{{ message }}</p>
+            <p class="message">{{ message }}</p>
         {% endif %}
     </div>
 </div>

@@ -4,32 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload - Insulyser.Inc</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Upload Error - Insulyser.Inc</title>
+    <link rel="stylesheet" href="{% static 'output6.css' %}">
 </head>
 <body>
 
-<div id="left-part">
-    <h2>Insulyser by TheBalds</h2>
-    <ul>
+<div class="sidebar">
+    <h2 class="logo">Insulyser <span>by TheBalds</span></h2>
+    <ul class="nav-links">
         <li><a href="/logout">Logout</a></li>
         <li><a href="/about">About Diabetic Retinopathy</a></li>
         <li><a href="/contact">Contact Us</a></li>
     </ul>
 </div>
 
-<div id="right-part">
-    <div class="container">
+<div class="main-content">
+    <div class="content-box">
         <h2>Retinal Scanned Image Uploader</h2>
-        <p>The Image uploaded must be clear and medically done and tested for further run through our algorithm</p>
+        <p class="instruction">The image uploaded must be clear, medically taken, and in a supported format for processing by our algorithm.</p>
 
-        <h2>Retinal Image Screener</h2>
-        <form method="post" enctype="multipart/form-data" action="/upload">
-            <label for="image">Upload the Retinal Scanned Image:</label>
-            <input type="file" id="image" name="image" accept="image/*">
-            <input type="submit" value="Upload">
-            <p>ERROR:</p>
-            <p>please upload correct retinal image in supported format</p>
+        <h3>Upload Failed</h3>
+        <p class="error-title">⚠️ ERROR</p>
+        <p class="error-detail">Please upload a correct retinal image in a supported format (e.g. .jpg, .png).</p>
+
+        <form method="post" enctype="multipart/form-data" action="/upload" class="upload-form">
+            {% csrf_token %}
+            <label for="image">Try Uploading Again:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <button type="submit" class="submit-btn">Upload</button>
         </form>
     </div>
 </div>
