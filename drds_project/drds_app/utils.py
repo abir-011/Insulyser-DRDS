@@ -53,7 +53,7 @@ def predict_class(image_path):
         return None
 
 # Gemini Config
-genai.configure(api_key="AIzaSyDGWDKsR3Rk5hdOLIfc0fY4WTEPPqiBipg")  # Replace with your actual key
+genai.configure(api_key="YOUR_API_KEY")  # Replace with your actual key
 
 gemini_model = genai.GenerativeModel(
     model_name="gemini-2.0-flash",
