@@ -53,7 +53,7 @@ def predict_class(image_path):
         return None
 
 # Gemini Config
-genai.configure(api_key="YOUR_API_KEY")  # Replace with your actual key
+genai.configure(api_key="Your_API_KEY")  # Replace with your actual key
 
 gemini_model = genai.GenerativeModel(
     model_name="gemini-2.0-flash",
@@ -66,27 +66,31 @@ gemini_model = genai.GenerativeModel(
 )
 
 # Gemini Severity Assessment
-def get_gemini_assessment(hba1c, blood_pressure, duration, serum_creatinine, lipid_profile):
+def get_gemini_assessment(hba1c, blood_pressure, duration, serum_creatinine, lipid_profile, model_prediction):
     prompt = f"""
-These are the vitals of a diabetic patient:
+A diabetic patient's vitals and eye image-based CNN model diagnosis are as follows:
+
+Vitals:
 - HbA1c: {hba1c} %
 - Blood Pressure: {blood_pressure} mmHg
 - Duration of Diabetes: {duration} years
 - Serum Creatinine: {serum_creatinine} mg/dL
 - Lipid Profile: {lipid_profile} mg/dL
 
-Please assess the patient's condition severity on a scale from 1 to 10, where:
-- 1 means the safest condition,
-- 10 means the most critical condition.
+CNN Model Prediction of Diabetic Retinopathy Class: {model_prediction}
 
-Also include a short justification (within 50 words) for the assigned severity.
+Your tasks:
+1. Give a severity score from 1 to 10, strictly based on vitals only(1 = safest, 10 = most critical).
+2. Based on both the model prediction and vitals, decide the final DR class from: ["No_DR", "Mild", "Moderate", "Severe", "Proliferate_DR"]
+3. Justify the final class (concise, within 100 words).
 
-Return the output strictly in the following JSON format:
+Return strictly in this JSON format:
 {{
   "severity_score": <number from 1 to 10>,
-  "reason": "<concise explanation within 50 words>"
+  "final_class": "<one of the 5 classes>",
+  "reason": "<concise explanation within 100 words>"
 }}
-    """
+"""
 
     try:
         response = gemini_model.generate_content([prompt])
@@ -97,12 +101,14 @@ Return the output strictly in the following JSON format:
         else:
             return {
                 "severity_score": None,
+                "final_class": None,
                 "reason": "Unable to parse Gemini response"
             }
     except Exception as e:
         print("Gemini API error:", e)
         return {
             "severity_score": None,
+            "final_class": None,
             "reason": "Gemini API call failed"
         }
 

@@ -31,8 +31,8 @@ def home_view(request):
 
 
 def wait_view(request):
-    image_path = os.path.join(UPLOAD_PATH, 'input.png')
-    prediction = predict_class(image_path)
+    final_class = request.session.get('final_class')
+
     output_map = {
         "Mild": "output1.html",
         "Moderate": "output2.html",
@@ -41,30 +41,7 @@ def wait_view(request):
         "Severe": "output5.html",
         None: "output6.html"
     }
-    return render(request, output_map.get(prediction, "output6.html"))
-
-def upload_view(request):
-    if request.method == 'POST' and request.FILES.get('image'):
-        # Extract form data
-        hba1c = request.POST.get('hba1c')
-        blood_pressure = request.POST.get('blood_pressure')
-        duration = request.POST.get('duration')
-        serum_creatinine = request.POST.get('serum_creatinine')
-        lipid_profile = request.POST.get('lipid_profile')
-        img = request.FILES['image']
-
-        # Save the uploaded image
-        path = os.path.join(UPLOAD_PATH, 'input.png')
-        with open(path, 'wb+') as dest:
-            for chunk in img.chunks():
-                dest.write(chunk)
-        
-        # Get prediction (for printing only)
-        temp_prediction = predict_class(path)
-        print_patient_vitals(hba1c, blood_pressure, duration, serum_creatinine, lipid_profile, temp_prediction)
-
-        return redirect('wait')
-    return render(request, 'home.html')
+    return render(request, output_map.get(final_class, "output6.html"))
 
 
 def logout_view(request):
@@ -97,11 +74,29 @@ def upload_view(request):
         # Predict using image model
         predicted_class = predict_class(path)
 
-        # Get severity from Gemini
-        severity_data = get_gemini_assessment(hba1c, blood_pressure, duration, serum_creatinine, lipid_profile)
+        # Get severity and final class from Gemini
+        gemini_data = get_gemini_assessment(hba1c, blood_pressure, duration, serum_creatinine, lipid_profile, predicted_class)
+        severity_score = gemini_data.get('severity_score')
+        final_class = gemini_data.get('final_class')
+        reason = gemini_data.get('reason')
 
-        # Log all
-        print_patient_vitals(hba1c, blood_pressure, duration, serum_creatinine, lipid_profile, predicted_class, severity_data)
+        # Store everything in session
+        request.session['hba1c'] = hba1c
+        request.session['blood_pressure'] = blood_pressure
+        request.session['duration'] = duration
+        request.session['serum_creatinine'] = serum_creatinine
+        request.session['lipid_profile'] = lipid_profile
+        request.session['predicted_class'] = predicted_class
+        request.session['severity_score'] = severity_score
+        request.session['final_class'] = final_class
+        request.session['reason'] = reason
+
+        # Log
+        print_patient_vitals(hba1c, blood_pressure, duration, serum_creatinine, lipid_profile, predicted_class, {
+            "severity_score": severity_score,
+            "reason": reason
+        })
+        print("Final DR Class:", final_class)
 
         return redirect('wait')
     return render(request, 'home.html')
