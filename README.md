@@ -3,6 +3,8 @@
 This repository contains a web application built using Django and HTML/CSS for detecting different stages of diabetic retinopathy from retinal images. 
 The application allows users to upload scanned retinal images and provides predictions on the stage of diabetic retinopathy, including mild, moderate, no diabetic retinopathy, proliferative diabetic retinopathy, and severe diabetic retinopathy.
 
+It now combines our CNN model's prediction and a generative AI (Gemini) system to provide a comprehensive severity assessment and final diagnosis based on other essential body factors too such as hba1c, blood_pressure, duration, serum_creatinine and lipid_profile.
+
 ## Table of Contents
 
 - [Features](#features)
@@ -42,6 +44,12 @@ The application allows users to upload scanned retinal images and provides predi
     pip install -r requirements.txt
     ```
 
+3. Run migrations and create the database:
+
+   ```bash
+   python manage.py migrate
+   ```
+
 ## Usage
 
 1. Start the Django development server:
@@ -65,7 +73,7 @@ The application allows users to upload scanned retinal images and provides predi
 - `model/` : Contains the trained model file `model_2.h5`.
 - `templates/` : HTML templates for frontend rendering.
 - `views.py` : Core logic for image processing and prediction.
-- `settings.py` : Project settings and configuration.
+- `utils.py` – Helper functions now also includes Gen-AI integration.
 - `media/` : Stores uploaded images.
 - `dataset/` – Dataset used for training.
 - `requirements.txt` – List of required Python packages.
