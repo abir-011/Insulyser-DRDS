@@ -1,4 +1,5 @@
-import os
+import os,sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import cv2
 import numpy as np
 from keras.models import load_model
@@ -6,6 +7,7 @@ from keras.preprocessing.image import ImageDataGenerator
 import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import json, re
+from key import APIkey as apikey
 
 # Model Path
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,7 +55,7 @@ def predict_class(image_path):
         return None
 
 # Gemini Config
-genai.configure(api_key="Your_API_KEY")  # Replace with your actual key
+genai.configure(api_key=apikey)  # Replace with your actual key
 
 gemini_model = genai.GenerativeModel(
     model_name="gemini-2.0-flash",

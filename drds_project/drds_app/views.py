@@ -32,7 +32,8 @@ def home_view(request):
 
 def wait_view(request):
     final_class = request.session.get('final_class')
-
+    severity_score = request.session.get('severity_score')
+    reason = request.session.get('reason')
     output_map = {
         "Mild": "output1.html",
         "Moderate": "output2.html",
@@ -41,7 +42,15 @@ def wait_view(request):
         "Severe": "output5.html",
         None: "output6.html"
     }
-    return render(request, output_map.get(final_class, "output6.html"))
+
+    template_name = output_map.get(final_class, "output6.html")
+    context = {
+        'final_class': final_class,
+        'severity_score': severity_score,
+        'reason': reason
+    }
+
+    return render(request, template_name, context)
 
 
 def logout_view(request):
