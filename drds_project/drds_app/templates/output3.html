@@ -5,20 +5,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Predicted - Insulyser.Inc</title>
-    <link rel="stylesheet" href="{% static 'output3.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+
+        .sidebar {
+            width: 320px;
+            background: url("{% static 'sidebar-bg.jpg' %}") no-repeat center center/cover;
+            padding: 40px 30px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 5px 0 30px rgba(0,0,0,0.2);
+            animation: slideInLeft 1s ease forwards;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .logo span {
+            font-weight: 300;
+            font-size: 1rem;
+            color: #00e5ff;
+        }
+
+        .nav-links {
+            margin-top: 50px;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(0, 229, 255, 0.1);
+            color: #00e5ff;
+        }
+
+        .main-content {
+            flex: 1;
+            position: relative;
+            background: url("{% static 'bgm.jpg' %}") no-repeat center center/cover;
+            overflow-y: auto;
+        }
+
+        .blur-layer {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            z-index: 0;
+        }
+
+        .content-box {
+            position: relative;
+            z-index: 2;
+            padding: 60px 50px;
+            color: #fff;
+            animation: fadeInUp 1.2s ease forwards;
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            backdrop-filter: blur(16px);
+        }
+
+        .content-box h2 {
+            font-size: 2.8rem;
+            color: #00e5ff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .content-box p, .content-box .result {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-top: 10px;
+            color: #e0f7fa;
+        }
+
+        .content-box .result {
+            font-size: 2rem;
+            color: #ff9800;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .content-box h3 {
+            font-size: 1.5rem;
+            color: #00e5ff;
+            margin-top: 30px;
+        }
+
+        .content-box .button-container {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .content-box .button-container li {
+            display: inline-block;
+        }
+
+        .button {
+            background-color: #00e5ff;
+            color: #fff;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .button:hover {
+            background-color: #009ecf;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 20px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .content-box {
+                margin: 20px;
+                padding: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <div class="sidebar">
-    <h2 class="logo">Insulyser <span>by TheBalds</span></h2>
-    <ul class="nav-links">
-        <li><a href="/logout">Logout</a></li>
-        <li><a href="/about">About Diabetic Retinopathy</a></li>
-        <li><a href="/contact">Contact Us</a></li>
-    </ul>
+    <div>
+        <h2 class="logo">Insulyser <span>by TheBalds</span></h2>
+        <ul class="nav-links">
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="/about">About Diabetic Retinopathy</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+        </ul>
+    </div>
 </div>
 
 <div class="main-content">
+    <div class="blur-layer"></div>
+
     <div class="content-box">
         <h2>Predicted Result</h2>
         <p class="result">{{ final_class }}</p>

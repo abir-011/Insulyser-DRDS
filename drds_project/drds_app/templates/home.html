@@ -2,53 +2,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload - Insulyser.Inc</title>
-    <link rel="stylesheet" href="{% static 'home.css' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload - Insulyser.Inc</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      display: flex;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 320px;
+      height: 100vh;
+      background: url("{% static 'jpg' %}") no-repeat center center/cover;
+      padding: 40px 30px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      box-shadow: 5px 0 30px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .logo span {
+      font-weight: 300;
+      font-size: 1rem;
+      color: #00e5ff;
+    }
+
+    .nav-links {
+      margin-top: 30px;
+      list-style: none;
+      width: 100%;
+    }
+
+    .nav-links li {
+      margin: 15px 0;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 8px 12px;
+      border-radius: 8px;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(0, 229, 255, 0.1);
+      color: #00e5ff;
+    }
+
+    .main-content {
+      margin-left: 320px;
+      flex: 1;
+      padding: 60px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: url("{% static 'bgm.jpg' %}") no-repeat center center/cover;
+      position: relative;
+    }
+
+    .main-content::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.12);
+      z-index: 0;
+    }
+
+    .content-box {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 750px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 50px 40px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      backdrop-filter: blur(14px);
+      color: #fff;
+      margin-bottom: 50px;
+    }
+
+    .content-box h3 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      color: #00e5ff;
+      text-align: center;
+    }
+
+    .subtext {
+      font-size: 1.1rem;
+      color: #e0f7fa;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .upload-form {
+      display: grid;
+      gap: 20px;
+    }
+
+    .upload-form label {
+      font-weight: 500;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .upload-form input[type="text"],
+    .upload-form input[type="number"] {
+      width: 100%;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .upload-form input[type="text"]:focus,
+    .upload-form input[type="number"]:focus {
+      background: rgba(255, 255, 255, 0.3);
+      outline: none;
+    }
+
+    .upload-form input::placeholder {
+      color: #d0e6ef;
+    }
+
+    .upload-form input[type="file"] {
+      display: none;
+    }
+
+    /* Spacing between label and Browse button */
+    .upload-form label[for="image"] {
+      margin-bottom: 10px;
+    }
+
+    .upload-form label[for="image"]::after {
+      content: "Browse Image";
+      display: inline-block;
+      margin-top: 8px;
+      padding: 12px 20px;
+      background-color: #00e5ff;
+      color: #000;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .upload-form label[for="image"]:hover::after {
+      background-color: #00bcd4;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background-color: #00e5ff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #00c0d2;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 30px 20px;
+      }
+
+      .content-box {
+        padding: 30px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <div class="sidebar">
-    <h2 class="logo">Insulyser <span>by TheBalds</span></h2>
-    <ul class="nav-links">
-        <li><a href="/logout">Logout</a></li>
-        <li><a href="/about">About Diabetic Retinopathy</a></li>
-        <li><a href="/contact">Contact Us</a></li>
-    </ul>
+  <h2 class="logo">Insulyser <span>by TheBalds</span></h2>
+  <ul class="nav-links">
+    <li><a href="/logout">Logout</a></li>
+    <li><a href="/about">About Diabetic Retinopathy</a></li>
+    <li><a href="/contact">Contact Us</a></li>
+  </ul>
 </div>
 
 <div class="main-content">
-    <div class="content-box">
-        <p class="subtext">Please upload a clear, medically verified retinal image for accurate detection.</p>
+  <div class="content-box">
+    <p class="subtext">Please upload a clear, medically verified retinal image for accurate detection.</p>
+    <h3>Patient Information</h3>
+    <form method="post" enctype="multipart/form-data" action="/upload" class="upload-form">
+      {% csrf_token %}
+      <label for="hba1c">HbA1c (%):</label>
+      <input type="text" id="hba1c" name="hba1c" placeholder="Enter HbA1c level" required>
 
-        <h3>Patient Information</h3>
-        <form method="post" enctype="multipart/form-data" action="/upload" class="upload-form">
-            {% csrf_token %}
-            
-            <!-- Input Fields for Patient Data -->
-            <label for="hba1c">HbA1c (%):</label>
-            <input type="text" id="hba1c" name="hba1c" placeholder="Enter HbA1c level" required>
+      <label for="blood_pressure">Blood Pressure (mmHg):</label>
+      <input type="text" id="blood_pressure" name="blood_pressure" placeholder="Enter Blood Pressure" required>
 
-            <label for="blood_pressure">Blood Pressure (mmHg):</label>
-            <input type="text" id="blood_pressure" name="blood_pressure" placeholder="Enter Blood Pressure" required>
+      <label for="duration">Duration of Diabetes (years):</label>
+      <input type="number" id="duration" name="duration" placeholder="Enter Duration" required>
 
-            <label for="duration">Duration of Diabetes (years):</label>
-            <input type="number" id="duration" name="duration" placeholder="Enter Duration" required>
+      <label for="serum_creatinine">Serum Creatinine (mg/dL):</label>
+      <input type="text" id="serum_creatinine" name="serum_creatinine" placeholder="Enter Serum Creatinine" required>
 
-            <label for="serum_creatinine">Serum Creatinine (mg/dL):</label>
-            <input type="text" id="serum_creatinine" name="serum_creatinine" placeholder="Enter Serum Creatinine" required>
+      <label for="lipid_profile">Lipid Profile (mg/dL):</label>
+      <input type="text" id="lipid_profile" name="lipid_profile" placeholder="Enter Lipid Profile" required>
 
-            <label for="lipid_profile">Lipid Profile (mg/dL):</label>
-            <input type="text" id="lipid_profile" name="lipid_profile" placeholder="Enter Lipid Profile" required>
+      <label for="image">Choose Retinal Scanned Image:</label>
+      <input type="file" id="image" name="image" accept="image/*" required>
 
-            <!-- Image Upload Section -->
-            <label for="image">Choose Retinal Scanned Image:</label>
-            <input type="file" id="image" name="image" accept="image/*" required>
-
-            <button type="submit" class="submit-btn">Upload</button>
-        </form>
-    </div>
+      <button type="submit" class="submit-btn">Upload</button>
+    </form>
+  </div>
 </div>
 
 </body>
