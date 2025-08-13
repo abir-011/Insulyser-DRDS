@@ -1,9 +1,10 @@
-# Insulyser - Diabetic Retinopathy Detection System
+# Insulyser - Diabetic Retinopathy Detection System Ver.2
 
 This repository contains a web application built using Django and HTML/CSS for detecting different stages of diabetic retinopathy from retinal images. 
 The application allows users to upload scanned retinal images and provides predictions on the stage of diabetic retinopathy, including mild, moderate, no diabetic retinopathy, proliferative diabetic retinopathy, and severe diabetic retinopathy.
-
 It now combines our CNN model's prediction and a generative AI (Gemini) system to provide a comprehensive severity assessment and final diagnosis based on other essential body factors too such as hba1c, blood_pressure, duration, serum_creatinine and lipid_profile.
+
+[For version 1 click here](https://github.com/saurav6422/Diabetic-Retinopathy-Detection-System)
 
 ## Table of Contents
 
